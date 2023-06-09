@@ -1,0 +1,46 @@
+{% load static %}
+
+<!-- CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
+<!-- JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<style>
+  .container {
+    text-align: center;
+    color: white;
+  }
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  </style>
+
+  {% if request.user.is_authenticated %}
+
+    <div class="container">
+      <img src="{% static 'images/back.jpg' %}" alt="Snow" style="width:100%; filter: blur(3px); -webkit-filter: blur(3px);">
+      <div class="centered">
+        <h1>welcome, {{request.user.first_name}}</h1><br>
+        <a href="{% url 'video_call'  %}"><button type="button" class="btn btn-success">New Meeting</button></a>
+        <a href="{% url 'join_room'  %}"><button type="button" class="btn btn-success">Join Meeting</button></a>
+        <a href="{% url 'logout'  %}"><button type="button" class="btn btn-success">Logout</button></a>
+      </div>
+    </div>  
+
+
+  {% else %}
+
+    <div class="container">
+      <img src="{% static 'images/back.jpg' %}" alt="Snow" style="width:100%; filter: blur(3px); -webkit-filter: blur(3px);">
+      <div class="centered">
+        <h1>welcome, {{request.user.first_name}}</h1><br>
+        <a href="{% url 'register'  %}"><button type="button" class="btn btn-success">Register</button></a>
+        <a href="{% url 'login'  %}"><button type="button" class="btn btn-success">Login</button></a>
+      </div>
+    </div>  
+      
+  {% endif %} 
